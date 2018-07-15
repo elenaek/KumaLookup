@@ -1,3 +1,5 @@
+require("dotenv").config();
+
 //Action Type Constants
 export const TOGGLE_NUMBERS = 'TOGGLE_NUMBERS';
 export const LOOKUP_INPUT_CHANGE = 'LOOKUP_INPUT_CHANGE';
@@ -5,8 +7,6 @@ export const RESET_INPUT = 'RESET_INPUT';
 export const GET_LOOKUP_INFO = 'GET_LOOKUP_INFO';
 
 
-//Twilio Lookup API url
-const twilioUrl = `https://lookups.twilio.com/v1/PhoneNumbers/`
 
 //Action Creator functions, returns action object with type action constant
 
@@ -33,9 +33,21 @@ export function resetLookupValue(){
 }
 
 export function getLookupValues(lookup_input_value){
+    const twilioUrl = `https://lookups.twilio.com/v1/PhoneNumbers/${lookup_input_value}?Type=carrier&Type=caller-name`;
+    const requestOptions = {
+        method: "GET",
+        headers:{
+            Authorization: `Basic ${process.env.twilUSER}:${process.env.twilPW}`
+        }
+    }
     return (
         async function(dispatch){
-            const res = await fetch()
+            const res = await fetch(twilioUrl, requestOptions);
+            const lookupRes = res.json();
+            return dispatch({
+                type: GET_LOOKUP_INFO,
+                lookup_info: lookupRes
+            });
         }
     );
 }
