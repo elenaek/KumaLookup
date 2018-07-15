@@ -14,9 +14,10 @@ import {Container, Button, Text, Content, Form, Item, Input} from 'native-base';
 const LookupBar = ({lookup_input_value,updateLookupValue}) => (
         <View style={styles.lookupBarStyle}>
         <Content style={styles.numberInput}>
+                <Text>{lookup_input_value}</Text>
                 <Form>
                     <Item>
-                        <Input placeholder="Enter phone number" keyboardType="number-pad" onChangeText={updateLookupValue}/>
+                        <Input placeholder="Enter phone number" keyboardType="numeric" onChangeText={updateLookupValue} value={lookup_input_value}/>
                     </Item>
                 </Form>
         </Content>
