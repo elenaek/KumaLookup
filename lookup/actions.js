@@ -1,4 +1,5 @@
-require("dotenv").config();
+//Import Env Variables
+import {twilUSER,twilPW} from 'react-native-dotenv';
 
 //Action Type Constants
 export const TOGGLE_NUMBERS = 'TOGGLE_NUMBERS';
@@ -37,7 +38,7 @@ export function getLookupInfo(lookup_input_value){
     const requestOptions = {
         method: "GET",
         headers:{
-            Authorization: `Basic ${process.env.twilUSER}:${process.env.twilPW}`
+            Authorization: `Basic ${twilUSER}:${twilPW}`
         }
     }
     return (
