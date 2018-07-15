@@ -5,16 +5,16 @@ import {connect} from 'react-redux';
 import {bindActionCreators} from 'redux';
 
 //Import redux actions for the actioncreatorimport
-import {updateLookupValue} from './actions';
+import {updateLookupValue, getLookupInfo} from './actions';
 
 //Styling imports for react-native and native-base
 import {StyleSheet, View, TextInput} from 'react-native';
 import {Container, Button, Text, Content, Form, Item, Input} from 'native-base';
 
-const LookupBar = ({lookup_input_value,updateLookupValue}) => (
+const LookupBar = ({lookup_input_value,updateLookupValue,lookup_info}) => (
         <View style={styles.lookupBarStyle}>
         <Content style={styles.numberInput}>
-                <Text>{lookup_input_value}</Text>
+                <Text>{lookup_info}{lookup_input_value}</Text>
                 <Form>
                     <Item>
                         <Input placeholder="Enter phone number" keyboardType="numeric" onChangeText={updateLookupValue} value={lookup_input_value}/>
@@ -22,7 +22,7 @@ const LookupBar = ({lookup_input_value,updateLookupValue}) => (
                 </Form>
         </Content>
         <Content>
-            <Button style={styles.buttonGroup}>
+            <Button style={styles.buttonGroup} onPress={getLookupInfo(lookup_input_value)}>
                 <Text>Submit Number</Text>
             </Button>
         </Content>
@@ -47,9 +47,10 @@ const LookupBar = ({lookup_input_value,updateLookupValue}) => (
       });
 
       const mapStateToProps = (state) => ({
-        lookup_input_value: state.lookup.lookup_input_value
+        lookup_input_value: state.lookup.lookup_input_value,
+        lookup_info: state.lookup.lookup_info
       });
 
-      const mapDispatchToProps = (dispatch) => bindActionCreators({updateLookupValue}, dispatch);
+      const mapDispatchToProps = (dispatch) => bindActionCreators({updateLookupValue,getLookupInfo}, dispatch);
   
 export default connect(mapStateToProps,mapDispatchToProps)(LookupBar);

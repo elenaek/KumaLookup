@@ -1,4 +1,4 @@
-import {LOOKUP_INPUT_CHANGE,TOGGLE_NUMBERS, RESET_INPUT} from './actions';
+import {LOOKUP_INPUT_CHANGE,TOGGLE_NUMBERS, RESET_INPUT, GET_LOOKUP_INFO} from './actions';
 
 const initialState = {
     numbersVisibility: false,
@@ -18,6 +18,8 @@ export default function(state = initialState, action){
             return {...state, lookup_input_value };
         case RESET_INPUT:
             return{...state, lookup_input_value: ''};
+        case GET_LOOKUP_INFO:
+            return {...state, lookup_info}
         default:
             console.log(LOOKUP_INPUT_CHANGE);
             return state;

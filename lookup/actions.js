@@ -32,7 +32,7 @@ export function resetLookupValue(){
     }
 }
 
-export function getLookupValues(lookup_input_value){
+export function getLookupInfo(lookup_input_value){
     const twilioUrl = `https://lookups.twilio.com/v1/PhoneNumbers/${lookup_input_value}?Type=carrier&Type=caller-name`;
     const requestOptions = {
         method: "GET",
