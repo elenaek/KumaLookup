@@ -1,9 +1,9 @@
-import {LOOKUP_INPUT_CHANGE,TOGGLE_NUMBERS, RESET_INPUT, GET_LOOKUP_INFO} from './actions';
+import {LOOKUP_INPUT_CHANGE,TOGGLE_RESULTS, RESET_INPUT, GET_LOOKUP_INFO} from './actions';
 
 const initialState = {
-    numbersVisibility: false,
+    resultsVisibility: false,
     lookup_input_value: '',
-    lookup_info: ""
+    lookup_info: {}
 };
 
 
@@ -11,8 +11,8 @@ const initialState = {
 export default function(state = initialState, action){
     const { type, lookup_input_value, lookup_info } = action;
     switch(type){
-        case TOGGLE_NUMBERS:
-            return {...state,numbersVisibility: !state.numbersVisibility};
+        case TOGGLE_RESULTS:
+            return {...state,resultsVisibility: !state.resultsVisibility};
         case LOOKUP_INPUT_CHANGE:
             console.log("hit input change");
             return {...state, lookup_input_value };

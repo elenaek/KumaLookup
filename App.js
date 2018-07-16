@@ -8,7 +8,8 @@ import rootReducer from './rootReducer';
 import Expo from 'expo';
 
 import Head from './ui/Header';
-import LookupBar from './lookup/LookupBar.js';
+import LookupBar from './lookup/LookupBar';
+import ModalResults from './lookup/ModalResults';
 import { StyleSheet, Text, View } from 'react-native';
 import {Container} from 'native-base';
 
@@ -46,6 +47,7 @@ export default class App extends Component{
       <Provider store={store}>
         <Container>
         <Head />
+        <ModalResults />
         <LookupBar />
         </Container>
       </Provider>

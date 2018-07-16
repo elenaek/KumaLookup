@@ -3,18 +3,19 @@ import {twilUSER,twilPW} from 'react-native-dotenv';
 import base64 from 'base-64';
 
 //Action Type Constants
-export const TOGGLE_NUMBERS = 'TOGGLE_NUMBERS';
+export const TOGGLE_RESULTS = 'TOGGLE_RESULTS';
 export const LOOKUP_INPUT_CHANGE = 'LOOKUP_INPUT_CHANGE';
 export const RESET_INPUT = 'RESET_INPUT';
 export const GET_LOOKUP_INFO = 'GET_LOOKUP_INFO';
 
 
 
+
 //Action Creator functions, returns action object with type action constant
 
-export function toggleNumbers(){
+export function toggleResults(){
     return {
-        type: TOGGLE_NUMBERS
+        type: TOGGLE_RESULTS
     }
 }
 
@@ -49,7 +50,7 @@ export function getLookupInfo(lookup_input_value){
             console.log(lookupRes.caller_name);
             return dispatch({
                 type: GET_LOOKUP_INFO,
-                lookup_info: lookupRes.caller_name.caller_name
+                lookup_info: lookupRes
             }); 
     });
 }
