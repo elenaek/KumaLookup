@@ -19,8 +19,10 @@ import {
     Subtitle,
     Card,
     CardItem,
-    Content
+    Content,
+    Image
 } from 'native-base';
+import BearShowYou from '../ui/BearShowYou';
 
 
 
@@ -73,7 +75,7 @@ const generateCarrierInformationBody = (lookup_info) => {
 
 const ModalResults = ({resultsVisibility, toggleResults, lookup_info}) => {
     return (
-    <View>
+    // <View>
         <Modal 
             animationType="slide" 
             transparent={false} 
@@ -81,8 +83,8 @@ const ModalResults = ({resultsVisibility, toggleResults, lookup_info}) => {
             onRequestClose={() => toggleResults()}
             presentationStyle="formSheet"
         >
-        <Container>
-                <View style={styles.head}>
+        {/* <Container> */}
+                {/* <View style={styles.head}> */}
                     <Header style={styles.statusBar}>
                         <Left>
                             <Button onPress={toggleResults} transparent>
@@ -97,6 +99,7 @@ const ModalResults = ({resultsVisibility, toggleResults, lookup_info}) => {
                         <Right />
                     </Header>
                         <Content contentContainerStyle={styles.cardContent}>
+                        <BearShowYou style={{height: '10%'}}/>
                         <Card style={styles.card}>
                             <CardItem header>
                                 <Text style={styles.infoHeader}>Caller Information</Text>
@@ -118,10 +121,10 @@ const ModalResults = ({resultsVisibility, toggleResults, lookup_info}) => {
                             </CardItem>
                         </Card>
                         </Content>
-                </View>
-         </Container>
+                {/* </View> */}
+         {/* </Container> */}
         </Modal>
-    </View>
+    // </View>
 )}
 
 const styles = StyleSheet.create({
