@@ -18,8 +18,6 @@ import {
 } from 'native-base';
 
 const Head = () => (
-    // <Content>
-    //         <View style={styles.head}>
                 <Header style={styles.statusBar}>
                     <Left />
                     <Body>
@@ -27,23 +25,9 @@ const Head = () => (
                     </Body>
                     <Right />
                 </Header>
-    //         </View>
-    // </Content>
 );
 
 const styles = StyleSheet.create({
-    // head:{
-    //     ...Platform.select({
-    //         android:{
-    //             marginTop: StatusBar.currentHeight,
-    //             padding:0,
-    //             margin: 0,
-    //         },
-    //         ios:{
-    
-    //         }
-    //     }),
-    //   },
     statusBar:{
         ...Platform.select({
             android:{

@@ -22,7 +22,6 @@ const LookupBar = ({lookup_input_value,updateLookupValue,lookup_info,getLookupIn
                     </Item>
                 </Form>
                 <Button style={styles.buttonGroup} onPress={() => {
-                        console.log(lookup_info);
                         getLookupInfo(lookup_input_value);
                         toggleResults();
                     }}>

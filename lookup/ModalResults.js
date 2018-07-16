@@ -72,7 +72,6 @@ const generateCarrierInformationBody = (lookup_info) => {
 
 
 const ModalResults = ({resultsVisibility, toggleResults, lookup_info}) => {
-    console.log(lookup_info);
     return (
     <View>
         <Modal 

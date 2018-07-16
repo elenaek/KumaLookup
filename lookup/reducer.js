@@ -14,12 +14,10 @@ export default function(state = initialState, action){
         case TOGGLE_RESULTS:
             return {...state,resultsVisibility: !state.resultsVisibility};
         case LOOKUP_INPUT_CHANGE:
-            console.log("hit input change");
             return {...state, lookup_input_value };
         case RESET_INPUT:
             return{...state, lookup_input_value: ''};
         case GET_LOOKUP_INFO:
-            console.log("hit lookup dispatch");
             return {...state, lookup_info}
         default:
             return state;
