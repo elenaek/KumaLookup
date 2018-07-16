@@ -13,12 +13,13 @@ import {
     Title,
     Right,
     Header,
-    Container
+    Container,
+    Content
 } from 'native-base';
 
 const Head = () => (
-    <Container>
-            <View style={styles.head}>
+    // <Content>
+    //         <View style={styles.head}>
                 <Header style={styles.statusBar}>
                     <Left />
                     <Body>
@@ -26,25 +27,28 @@ const Head = () => (
                     </Body>
                     <Right />
                 </Header>
-            </View>
-    </Container>
+    //         </View>
+    // </Content>
 );
 
 const styles = StyleSheet.create({
-    head:{
-        ...Platform.select({
-            android:{
-                marginTop: StatusBar.currentHeight
-            },
-            ios:{
+    // head:{
+    //     ...Platform.select({
+    //         android:{
+    //             marginTop: StatusBar.currentHeight,
+    //             padding:0,
+    //             margin: 0,
+    //         },
+    //         ios:{
     
-            }
-        }),
-      },
+    //         }
+    //     }),
+    //   },
     statusBar:{
         ...Platform.select({
             android:{
-                backgroundColor:"#6E2C00"
+                marginTop: StatusBar.currentHeight,
+                backgroundColor:"#6E2C00",
             },
             ios:{
 

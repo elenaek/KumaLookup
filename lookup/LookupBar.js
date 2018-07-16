@@ -21,15 +21,13 @@ const LookupBar = ({lookup_input_value,updateLookupValue,lookup_info,getLookupIn
                         <Input placeholder="Enter phone number" keyboardType="numeric" onChangeText={updateLookupValue} value={lookup_input_value}/>
                     </Item>
                 </Form>
-        </Content>
-        <Content>
-            <Button style={styles.buttonGroup} onPress={() => {
+                <Button style={styles.buttonGroup} onPress={() => {
                         console.log(lookup_info);
                         getLookupInfo(lookup_input_value);
                         toggleResults();
                     }}>
-                <Text>Lookup Number</Text>
-            </Button>
+                    <Text>Lookup Number</Text>
+                </Button>
         </Content>
         </View>
     );
@@ -41,10 +39,14 @@ const LookupBar = ({lookup_input_value,updateLookupValue,lookup_info,getLookupIn
           width: '100%',
           backgroundColor: '#fff',
           alignItems: 'center',
+          marginTop: 20
         },
         buttonGroup:{
             backgroundColor: "#6E2C00",
-            padding: 0
+            marginTop:10,
+            alignItems: 'center',
+            justifyContent: 'center',
+            marginLeft:'27.5%'
         },
         numberInput:{
             width:"85%"

@@ -10,8 +10,10 @@ import Expo from 'expo';
 import Head from './ui/Header';
 import LookupBar from './lookup/LookupBar';
 import ModalResults from './lookup/ModalResults';
+import ConfusedBear from './ui/ConfusedBear';
 import { StyleSheet, Text, View } from 'react-native';
-import {Container} from 'native-base';
+import {Container, Content} from 'native-base';
+import {Col, Row, Grid} from "react-native-easy-grid";
 
 
 //redux middleware
@@ -46,9 +48,10 @@ export default class App extends Component{
     return(
       <Provider store={store}>
         <Container>
-        <Head />
-        <ModalResults />
-        <LookupBar />
+              <Head />
+              <ConfusedBear/>
+              <LookupBar />
+          <ModalResults />
         </Container>
       </Provider>
     );
