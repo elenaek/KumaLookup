@@ -1,5 +1,15 @@
 {
   "expo": {
-    "sdkVersion": "27.0.0"
+    "sdkVersion": "27.0.0",
+    "name": "Kuma Lookup",
+    "version":"1.0.0",
+    "slug":"kumalookup",
+    "icon":"./icons/transparent_bear-icon.png",
+    "ios":{
+      "bundleIdentifier": "app.keane.kumalookup"
+    },
+    "android":{
+      "package": "app.keane.kumalookup"
+    }
   }
 }
