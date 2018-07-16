@@ -3,7 +3,7 @@ import {LOOKUP_INPUT_CHANGE,TOGGLE_NUMBERS, RESET_INPUT, GET_LOOKUP_INFO} from '
 const initialState = {
     numbersVisibility: false,
     lookup_input_value: '',
-    lookup_info: {}
+    lookup_info: ""
 };
 
 
@@ -19,9 +19,9 @@ export default function(state = initialState, action){
         case RESET_INPUT:
             return{...state, lookup_input_value: ''};
         case GET_LOOKUP_INFO:
+            console.log("hit lookup dispatch");
             return {...state, lookup_info}
         default:
-            console.log(LOOKUP_INPUT_CHANGE);
             return state;
     }
 }

@@ -1,5 +1,6 @@
 //Import Env Variables
 import {twilUSER,twilPW} from 'react-native-dotenv';
+import base64 from 'base-64';
 
 //Action Type Constants
 export const TOGGLE_NUMBERS = 'TOGGLE_NUMBERS';
@@ -34,21 +35,21 @@ export function resetLookupValue(){
 }
 
 export function getLookupInfo(lookup_input_value){
-    const twilioUrl = `https://lookups.twilio.com/v1/PhoneNumbers/${lookup_input_value}?Type=carrier&Type=caller-name`;
-    const requestOptions = {
-        method: "GET",
-        headers:{
-            Authorization: `Basic ${twilUSER}:${twilPW}`
-        }
-    }
-    return (
-        async function(dispatch){
+    return (async function(dispatch){
+            const base64EncodedAuth = base64.encode(`${twilUSER}:${twilPW}`);
+            const twilioUrl = `https://lookups.twilio.com/v1/PhoneNumbers/${lookup_input_value}?Type=carrier&Type=caller-name`;
+            const requestOptions = {
+                method: "GET",
+                headers:{
+                    Authorization: `Basic ${base64EncodedAuth}`
+                }
+            }
             const res = await fetch(twilioUrl, requestOptions);
-            const lookupRes = res.json();
+            const lookupRes = await res.json();
+            console.log(lookupRes.caller_name);
             return dispatch({
                 type: GET_LOOKUP_INFO,
-                lookup_info: lookupRes
-            });
-        }
-    );
+                lookup_info: lookupRes.caller_name.caller_name
+            }); 
+    });
 }

@@ -2,8 +2,8 @@ import React, {Component} from 'react';
 
 //Redux imports
 import {Provider} from 'react-redux';
-import {applyMiddleware, createStore} from 'redux';
-import thunk from 'redux-thunk';
+import {applyMiddleware, createStore, compose} from 'redux';
+import ReduxThunk from 'redux-thunk';
 import rootReducer from './rootReducer';
 import Expo from 'expo';
 
@@ -14,11 +14,11 @@ import {Container} from 'native-base';
 
 
 //redux middleware
-const middleware = [thunk];
+const middleware = [ReduxThunk];
 
 
 //redux store
-const store = createStore(rootReducer,{},applyMiddleware(...middleware));
+const store = createStore(rootReducer,{},compose(applyMiddleware(ReduxThunk)));
 
 export default class App extends Component{
   constructor(){

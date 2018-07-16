@@ -11,10 +11,11 @@ import {updateLookupValue, getLookupInfo} from './actions';
 import {StyleSheet, View, TextInput} from 'react-native';
 import {Container, Button, Text, Content, Form, Item, Input} from 'native-base';
 
-const LookupBar = ({lookup_input_value,updateLookupValue,lookup_info}) => (
+const LookupBar = ({lookup_input_value,updateLookupValue,lookup_info,getLookupInfo}) => (
         <View style={styles.lookupBarStyle}>
         <Content style={styles.numberInput}>
-                <Text>{lookup_info}{lookup_input_value}</Text>
+                {<Text>{lookup_info}</Text> }
+                <Text>{lookup_input_value}</Text>
                 <Form>
                     <Item>
                         <Input placeholder="Enter phone number" keyboardType="numeric" onChangeText={updateLookupValue} value={lookup_input_value}/>
@@ -22,8 +23,8 @@ const LookupBar = ({lookup_input_value,updateLookupValue,lookup_info}) => (
                 </Form>
         </Content>
         <Content>
-            <Button style={styles.buttonGroup} onPress={getLookupInfo(lookup_input_value)}>
-                <Text>Submit Number</Text>
+            <Button style={styles.buttonGroup} onPress={() => {getLookupInfo(lookup_input_value)}}>
+                <Text>Lookup Number</Text>
             </Button>
         </Content>
         </View>
@@ -51,6 +52,8 @@ const LookupBar = ({lookup_input_value,updateLookupValue,lookup_info}) => (
         lookup_info: state.lookup.lookup_info
       });
 
-      const mapDispatchToProps = (dispatch) => bindActionCreators({updateLookupValue,getLookupInfo}, dispatch);
+      const mapDispatchToProps = (dispatch) => (
+          bindActionCreators({updateLookupValue,getLookupInfo}, dispatch)
+      );
   
 export default connect(mapStateToProps,mapDispatchToProps)(LookupBar);
