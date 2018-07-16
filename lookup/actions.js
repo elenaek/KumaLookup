@@ -47,7 +47,7 @@ export function getLookupInfo(lookup_input_value){
             }
             const res = await fetch(twilioUrl, requestOptions);
             const lookupRes = await res.json();
-            console.log(lookupRes.caller_name);
+            console.log(lookupRes);
             return dispatch({
                 type: GET_LOOKUP_INFO,
                 lookup_info: lookupRes

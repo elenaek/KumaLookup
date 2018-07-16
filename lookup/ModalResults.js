@@ -9,11 +9,17 @@ import { Text,
         } from 'react-native';
 import {
     Left,
+    Button,
+    Icon,
     Body,
     Title,
     Right,
     Header,
-    Container
+    Container,
+    Subtitle,
+    Card,
+    CardItem,
+    Content
 } from 'native-base';
 
 
@@ -25,10 +31,48 @@ import {connect} from 'react-redux';
 import {bindActionCreators} from 'redux';
 
 //Import redux actions for the actioncreatorimport
+const checkForLookupInfoForHeader = (lookup_info) => {
+    if(lookup_info.caller_name){
+        return `${lookup_info.caller_name.caller_name} (${lookup_info.phone_number})`;
+    }
+    return "No Lookup Defined"; 
+}
+
+const generateCallerInformationBody = (lookup_info) => {
+    if(lookup_info.caller_name){
+        return (
+            <Container style={styles.infoContainer}>
+                <Text><Text style={styles.infoCategories}>Caller Name:</Text> {lookup_info.caller_name.caller_name}</Text>
+                <Text><Text style={styles.infoCategories}>Type Of Caller:</Text> {lookup_info.caller_name.caller_type}</Text>
+                <Text><Text style={styles.infoCategories}>Country:</Text> {lookup_info.country_code}</Text>
+                <Text><Text style={styles.infoCategories}>Phone Number:</Text> {lookup_info.phone_number}</Text>
+            </Container>
+        );
+    }
+    return (
+        <Text>Loading...</Text>
+    )
+}
+
+const generateCarrierInformationBody = (lookup_info) => {
+    if(lookup_info.caller_name){
+        return (
+            <Container style={styles.infoContainer}>
+                <Text><Text style={styles.infoCategories}>Carrier</Text>: {lookup_info.carrier.name}</Text>
+                <Text><Text style={styles.infoCategories}>Line Type:</Text> {lookup_info.carrier.type}</Text>
+                <Text><Text style={styles.infoCategories}>Mobile Country Code:</Text> {lookup_info.carrier.mobile_country_code}</Text>
+                <Text><Text style={styles.infoCategories}>Mobile Network Code:</Text> {lookup_info.carrier.mobile_network_code}</Text>
+            </Container>
+        );
+    }
+    return (
+        <Text>Loading...</Text>
+    )
+}
 
 
-const ModalResults = ({resultsVisibility, toggleResults}) => {
-    console.log(resultsVisibility);
+const ModalResults = ({resultsVisibility, toggleResults, lookup_info}) => {
+    console.log(lookup_info);
     return (
     <View>
         <Modal 
@@ -41,12 +85,40 @@ const ModalResults = ({resultsVisibility, toggleResults}) => {
         <Container>
                 <View style={styles.head}>
                     <Header style={styles.statusBar}>
-                        <Left />
+                        <Left>
+                            <Button onPress={toggleResults} transparent>
+                                <Icon name="arrow-back"/>
+                            </Button>
+                        </Left>
                         <Body>
-                            <Title>Kuma Lookup</Title>
+                            <Subtitle style={styles.subtitle}>
+                                {checkForLookupInfoForHeader(lookup_info)}
+                            </Subtitle>
                         </Body>
                         <Right />
                     </Header>
+                        <Content contentContainerStyle={styles.cardContent}>
+                        <Card style={styles.card}>
+                            <CardItem header>
+                                <Text style={styles.infoHeader}>Caller Information</Text>
+                            </CardItem>
+                            <CardItem>
+                                <Body>
+                                    {generateCallerInformationBody(lookup_info)}
+                                </Body>
+                            </CardItem>
+                        </Card>
+                        <Card style={styles.card}>
+                            <CardItem header>
+                                <Text style={styles.infoHeader}>Carrier Information</Text>
+                            </CardItem>
+                            <CardItem>
+                                <Body>
+                                    {generateCarrierInformationBody(lookup_info)}
+                                </Body>
+                            </CardItem>
+                        </Card>
+                        </Content>
                 </View>
          </Container>
         </Modal>
@@ -57,7 +129,7 @@ const styles = StyleSheet.create({
     head:{
         ...Platform.select({
             android:{
-                marginTop: StatusBar.currentHeight
+                flex:1,
             },
             ios:{
     
@@ -73,13 +145,81 @@ const styles = StyleSheet.create({
 
             }
         }),
-    }
+    },
+    subtitle:{
+        ...Platform.select({
+            android:{
+                flexDirection: "column",
+                width:"100%"
+            },
+            ios:{
+    
+            }
+        }),
+      },
+      card:{
+        ...Platform.select({
+            android:{
+                alignItems: "center",
+                justifyContent:"center",
+                width:"80%",
+                height:"100%"
+            },
+            ios:{
+    
+            }
+        }),
+      },
+      cardContent:{
+        ...Platform.select({
+            android:{
+                alignItems: "center",
+                justifyContent:"center",
+            },
+            ios:{
+    
+            }
+        }),
+      },
+      infoHeader:{
+        ...Platform.select({
+            android:{
+                fontSize: 17,
+                fontWeight:"bold"
+            },
+            ios:{
+    
+            }
+        }),
+      },
+      infoCategories:{
+        ...Platform.select({
+            android:{
+                fontSize: 14,
+                fontWeight:"bold"
+            },
+            ios:{
+    
+            }
+        }),
+      },
+      infoContainer:{
+        ...Platform.select({
+            android:{
+                height:"100%"
+            },
+            ios:{
+    
+            }
+        }),
+      }
     
 });
 
 
 const mapStateToProps = (state) => ({
-    resultsVisibility: state.lookup.resultsVisibility
+    resultsVisibility: state.lookup.resultsVisibility,
+    lookup_info: state.lookup.lookup_info
 });
 
 const mapDispatchToProps = (dispatch) => bindActionCreators({
